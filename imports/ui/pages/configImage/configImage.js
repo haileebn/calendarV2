@@ -11,7 +11,7 @@ Template.App_config_image.onCreated(() => {
 });
 Template.App_config_image.helpers({
     init() {
-        Meteor.call('image.insert', { url: "12344", title: "title23445"});
+        // Meteor.call('image.insert', { url: "12344", title: "title23445"});
         let imagesDb = Config.find({ name: 'image' }).fetch();
         let configTimeDb = Config.find({ name: 'time' }).fetch();
 

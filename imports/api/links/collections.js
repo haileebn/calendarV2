@@ -20,7 +20,7 @@ Meteor.methods({
     'image.insert'(info) {
         // check(text, String);
         const images = Config.findOne({name: "image"}).query.info;
-        console.log(images);
+        // console.log(images);
         images.push(info);
         Config.update({ name: 'image' }, { $set: { info: images } });
     },

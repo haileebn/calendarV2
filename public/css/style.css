@@ -1,0 +1,331 @@
+* {
+    font-family: arial, "Helvetica", "Times New Roman";
+    /*background-color: #1f2f5f;*/
+}
+html {
+    overflow: hidden;
+}
+/*.container-fluid,
+.focus,
+.quotation{
+    background-color: #284aaf;
+}*/
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+body{
+    /*	color: white;*/
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    /*background-color: #1f2f5f;
+	background: url(http://localhost:3000/image/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;*/
+}
+.container-fluid{
+    height: 100% !important;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+#header{
+    margin-top: 1%;
+    height: 15%;
+}
+h4{
+    font-size: 24px;
+}
+.table{
+    font-size: 23px;
+    /*margin-left: 2%;*/
+
+}
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th{
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+}
+tbody tr td {
+    word-break: break-all;
+}
+
+/*.col-day, .col-hour-end, .col-hour-start{
+	color: #ffea66;
+}
+*/
+
+.headerLeft {
+    /*background-color: #90e9ff;*/
+}
+#fimoLogo{
+    transform: translateY(40%);
+
+}
+
+/*begin header right*/
+.headerRight {
+    /*background-color: #3f4f5f;*/
+    font-size: 24px;
+}
+#iconWeather{
+    /*background-color: #8d1f7a;*/
+}
+#temp{
+    /*background-color: #1f2f4f;*/
+}
+#hum{
+    /*background-color: #6a5a6a;*/
+}
+#wind{
+    /*background-color: #7f2f4f;*/
+}
+#temp, #hum, #wind{
+    height: auto;
+}
+/*end header right*/
+
+/*bebin content*/
+.content{
+    /*background-color: #9d0d9d;*/
+    height: 70%;
+    margin-top: 2%;
+}
+#titleContent{
+
+    font-size: 32px;
+}
+hr{
+    width: 50%;
+}
+
+/*end content*/
+
+.content {
+    /*    background-color: #f8f440;*/
+
+}
+.focus {
+    height: auto;
+    font-size: 30px;
+    position: absolute;
+    bottom: 0;
+    /*background-color: #1f2f5f;*/
+
+
+}
+/*.focus .col-sm-1{
+	width: 500px;
+}*/
+.col-fixed-left{
+    width: 20%;
+    /*background-color: red;*/
+    position:relative;
+    padding-top: 5px;
+    z-index: 1;
+}
+.col-fixed-right{
+    width: 90%;
+    /*background-color: #1f2f5f;*/
+
+    position:absolute;
+    z-index: 1;
+    /*margin-top: 5px;*/
+}
+
+#focus{
+    /*background-color: #284aaf;*/
+    width: 86vw;
+}
+
+.slideshow-container{
+    position: relative;
+    margin: auto;
+}
+.mySlides{
+    display: none;
+    min-width: 100vw;
+    min-height: 100vh;
+
+    max-width: 100vw;
+    max-height: 100vh;
+
+    /*background-position: center;*/
+    /*transform: skew(20deg, 10deg);*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 10% 80%;
+
+}
+.active{
+    transition: all 5s ease;
+    /*transform: scale(0.8);*/
+    background-position: 100% 100%;
+    /*background-color: rgba(0,0,0,0.5);*/
+    /*transform: skew(20deg, 10deg);*/
+
+}
+#mySlide{
+    text-align: center;
+    position: absolute;
+
+}
+
+#contentImage{
+
+    height: 8%;
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    position: absolute;
+    bottom: 6%;
+
+}
+#contentImage p{
+    font-size: 34px;
+    font-family: 'Roboto';
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+}
+
+.quotation{
+    position: relative;
+    /*background-color: red;*/
+    height: auto;
+    padding: 0 15%;
+    text-align: center;
+}
+.contentQuota{
+    display: none;
+    height: 100%;
+    /*padding: 25% 0;*/
+    font-size: 40px;
+    color: #fffbca;
+    transform: translateY(40%);
+    /*background-color: red;*/
+}
+.contentQuota p{
+    font-family: 'Montserrat';
+    background-color: rgba(0,0,0,.2);
+}
+/*p{
+
+
+}*/
+
+em{
+    font-family: 'Dancing Script', cursive;
+    font-size: 50px;
+}
+.col-del, .col-stt{
+    text-align: center;
+    width: 5%;
+}
+.col-time{
+    width: 5%;
+}
+.col-time, .col-title, .col-author, .col-link{
+    padding-left: 2%;
+}
+
+.glyphicon-remove:hover{
+    color: red;
+}
+
+
+/*css for clock */
+#clock{
+    position: relative;
+}
+.clock {
+    border-radius: 50%;
+    background: #fff url(../image/ios_clock.svg) no-repeat center;
+    background-size: 88%;
+    height: 16em;
+    /*color: #000;*/
+    top: -40px;
+    left: 0;
+    padding-bottom: 31%;
+    position: absolute;
+    width: 20em;
+    transform: scale(0.7);
+
+}
+
+.clock.simple:after {
+    background: #000;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5%;
+    height: 5%;
+    z-index: 10;
+}
+.minutes-container, .hours-container, .seconds-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.hours {
+    background: #000;
+    height: 25%;
+    left: 48.75%;
+    position: absolute;
+    top: 25%;
+    transform-origin: 50% 100%;
+    width: 3%;
+}
+.minutes {
+    background: #000;
+    height: 40%;
+    left: 49%;
+    position: absolute;
+    top: 10%;
+    transform-origin: 50% 100%;
+    width: 2%;
+}
+.seconds {
+    background: red;
+    height: 45%;
+    left: 49.5%;
+    position: absolute;
+    top: 14%;
+    transform-origin: 50% 80%;
+    width: 1%;
+    z-index: 8;
+}
+@keyframes rotate {
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+.hours-container {
+    animation: rotate 43200s infinite linear;
+}
+.minutes-container {
+    animation: rotate 3600s infinite steps(60);
+}
+.seconds-container {
+    animation: rotate 60s infinite steps(60);
+}
+
+a#notDel{
+    cursor: not-allowed;
+}

@@ -1,0 +1,81 @@
+<template name="info">
+    {{init}}
+    <div class="quotation"></div>
+    <div class="slideshow-container"></div>
+    <div class="container-fluid">
+        <div class="row row-eq-height" id="header">
+            <div class="col-sm-7 col-lg-7 headerLeft">
+                <img class="col-sm-3 col-lg-3" id="fimoLogo" alt="logo fimo" />
+                <h4 class="col-sm-9 col-lg-9">Center of Multidisciplinary Integrated Technologies for Field Monitoring University of Engineering and Technology, Vietnam National University</h4>
+            </div>
+            <div class="col-sm-3 col-lg-3 headerRight">
+                <div class="row">
+                    <div class="col-sm-3 col-lg-3" id="iconWeather"></div>
+                    <div class="col-sm-9 col-lg-9">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12" id="temp"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12" id="hum"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12" id="wind"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-lg-2" id="clock">
+                <article class="clock img-responsive">
+                    <div class="hours-container">
+                        <div class="hours"></div>
+                    </div>
+                    <div class="minutes-container">
+                        <div class="minutes"></div>
+                    </div>
+                    <div class="seconds-container">
+                        <div class="seconds"></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 content">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12" id="titleContent"></div>
+                    <hr class="class14"/>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <table class="table none-border">
+                            <thead>
+                            <tr>
+                                <th class="col-sm-1 col-lg-1 col-day">Ngày</th>
+                                <th class="col-sm-4 col-lg-4 col-content">Nội dung</th>
+                                <th class="col-sm-1 col-lg-1 col-hour-start">Bắt Đầu</th>
+                                <th class="col-sm-1 col-lg-1 col-hour-end">Kết Thúc</th>
+                                <th class="col-sm-2 col-lg-2 col-place">Địa Điểm</th>
+                            </tr>
+                            </thead>
+                            <!--</table>
+                  <marquee scrollamount="2" direction='up' height="80%">
+                  <table class="table none-border" id="mainContent">-->
+                            <tbody id="contentTable">
+
+                            </tbody>
+                        </table>
+                        <!--</marquee>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row" >
+            <div class="col-sm-12 col-lg-12 focus">
+			<span class="col-fixed-left">
+				<span class="glyphicon glyphicon-bullhorn"></span> Tin Nổi Bật: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<marquee class="col-fixed-right" behavior="scroll" hspace="10" scrollamount="6" id="focus">
+				</marquee></span>
+            </div>
+        </div>
+    </div>
+</template>

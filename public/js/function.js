@@ -2,7 +2,6 @@ function configColor(type, backgroundImage = "") {
 	const focus = document.getElementsByClassName('focus');
 	const container = document.getElementsByClassName('container-fluid');
 	const quotation = document.getElementsByClassName('quotation');
-	console.log("1");
 	// if (focus.length !== 0 ) focus[0].style.backgroundColor = type.backgroundColor;
 	if (container.length !== 0) {
 		if (backgroundImage === "") container[0].style.backgroundColor = type.backgroundColor;
@@ -35,13 +34,23 @@ function changeColor(a,b,c, data) {
 	document.getElementById(c).value = data.highLight;
 	document.getElementById(c).title = `High Light: ${data.highLight}`;
 	document.getElementById(c).style.backgroundColor= "#b6adad";
-
 }
 
 function myFunction() {
     this.value = this.value.toUpperCase();
     if (this.id === 'cBackgroundColor') this.style.backgroundColor = this.value;
     else this.style.color = this.value;
+}
+
+function alertTimeout(tag, class_alert_add, class_alert_remove , wait) {
+    // body...
+    const alert = document.getElementById(tag);
+    alert.classList.remove(class_alert_remove);
+    alert.classList.add(class_alert_add);
+    alert.style.display = 'block';
+    setTimeout(function() {
+        alert.style.display = 'none';
+    }, wait);
 }
 
 // dung duoc nhung chay cui :) nen khong dung

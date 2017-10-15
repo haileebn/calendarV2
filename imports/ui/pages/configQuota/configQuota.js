@@ -1,14 +1,14 @@
 import { Config } from '/imports/api/links/collections.js';
 import { Meteor } from 'meteor/meteor';
 
-import './configImage.html';
+import './configQuota.html';
 
 let configTime;
 
-Template.App_config_image.onCreated(() => {
+Template.App_config_quota.onCreated(() => {
     Meteor.subscribe('config.all');
 });
-Template.App_config_image.helpers({
+Template.App_config_quota.helpers({
     init() {
         let imagesDb = Config.find({ name: 'image' }).fetch();
         let configTimeDb = Config.find({ name: 'time' }).fetch();
@@ -27,7 +27,7 @@ Template.App_config_image.helpers({
     },
 });
 
-Template.App_config_image.events({
+Template.App_config_quota.events({
     'click #add'(event) {
         // Prevent default browser form submit
         event.preventDefault();
@@ -56,7 +56,6 @@ Template.App_config_image.events({
         alertTimeout("alert", "alert-success", "alert-danger", 2000);
     },
 });
-
-Template.App_config_image.onRendered(() => {
-    document.title = "Config Image";
+Template.App_config_quota.onRendered(() => {
+    document.title = "Config Quotation";
 });

@@ -43,7 +43,7 @@ h4{
     font-size: 24px;
 }
 .table{
-    font-size: 23px;
+    font-size: 22px;
     /*margin-left: 2%;*/
 
 }
@@ -199,19 +199,22 @@ hr{
 }
 
 .quotation{
+    top: 40%;
+    width: 100%;
     position: relative;
+    padding: 0 10%;
     /*background-color: red;*/
     height: auto;
-    padding: 0 15%;
-    text-align: center;
+    /*height: 100%;*/
+
 }
 .contentQuota{
     display: none;
-    height: 100%;
     /*padding: 25% 0;*/
     font-size: 40px;
     color: #fffbca;
-    transform: translateY(40%);
+    text-align: center;
+    /*transform: translateY(80%);*/
     /*background-color: red;*/
 }
 .contentQuota p{

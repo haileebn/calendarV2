@@ -1,4 +1,4 @@
-<template name="App_config_image">
+<template name="App_config_quota">
     <div class="container-fluid">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -8,8 +8,8 @@
                 <ul class="nav navbar-nav">
                     <li class="/"><a href="/">Home</a></li>
                     <li><a href="/configTime">Config Time</a></li>
-                    <li><a href="/configQuota">Config quotation</a></li>
-                    <li class="active"><a href="/configImage">Config Image</a></li>
+                    <li class="active"><a href="/configQuota">Config quotation</a></li>
+                    <li><a href="/configImage">Config Image</a></li>
                     <li><a href="/configBackground">Config Background</a></li>
                 </ul>
             </div>
@@ -24,17 +24,15 @@
                     <!--</div>-->
                     <hr class="class14"/>
                 </div>
-                <form class="new-image">
+                <form class="new-quota">
                     <div class="form-group row">
                         <div class="col-lg-4 col-lg-offset-4" style="background-color: #eae1e1; color: black;">
-                            <div class="form-group">
-                                <label>Link Image</label>
-                                <input class="form-control" id="urlImg" type="text" placeholder="Link...">
-                            </div>
-                            <div class="form-group">
-                                <label>Content</label>
-                                <input class="form-control" id="contentImg" type="text" placeholder="Content...">
-                            </div>
+                            <label>Title</label>
+                            <input class="form-control" id="tTitle" type="text" placeholder="...">
+                            <label>Author</label>
+                            <input class="form-control" id="tAuthor" type="text" placeholder="...">
+                            <label>Time Show (Minutes)</label>
+                            <input class="form-control" id="tTimeShow" type="text" placeholder="...please enter number 0 -> 60.. 0.5 = 30s">
                             <button type="button" class="btn btn-primary" id="add"> Add </button>
                         </div>
                         <div id="alert" class="alert col-lg-offset-1 col-lg-2" style="display: none;">

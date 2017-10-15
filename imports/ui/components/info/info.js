@@ -113,6 +113,7 @@ Template.info.helpers({
 });
 
 Template.info.onRendered(() => {
+    document.title = "Home";
     initLocalClocks();
     let monday = new Date();
     monday = new Date(monday.setDate(monday.getDate() - monday.getDay() + 1));
@@ -168,7 +169,7 @@ function createRow(data) {
 
     col_day.innerHTML = (date_start.getDate() == date_end.getDate() ?
             (date_start.getDate() + '/' + (date_start.getMonth()+1)) :
-            (date_start.getDate() + '/' + (date_start.getMonth()+1) + ' ~ ' +
+            (date_start.getDate() + '/' + (date_start.getMonth()+1) + '~' +
                 date_end.getDate() + '/' + (date_end.getMonth()+1))
     );
     col_content.innerHTML = content;

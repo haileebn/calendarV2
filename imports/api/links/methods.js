@@ -3,7 +3,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Links } from './links.js';
-import { TOKEN, Secret, MultiData } from './collections.js';
+import { TOKEN, Secret, MultiData, Config } from './collections.js';
 import { Promise } from 'meteor/promise';
 
 const google = require('googleapis');
@@ -58,9 +58,18 @@ Meteor.methods({
         console.log(err);
       });
   },
-  // 'get.data'() {
-  //   return MultiData.find({});
-  // },
+  'image.insert'(info) {
+    // check(text, String);
+    let query = Config.findOne({name: "image"}).query;
+    query.info.push(info);
+    Config.update({ name: 'image' }, { $set: { query } });
+  },
+  'image.delete'(index) {
+    // check(text, String);
+    let query = Config.findOne({name: "image"}).query;
+    query.info.splice(index, 1);
+    Config.update({ name: 'image' }, { $set: { query } });
+  },
 });
 
 function getWeather(body) {

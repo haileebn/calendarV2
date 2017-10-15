@@ -17,13 +17,7 @@ if (Meteor.isServer) {
 
 
 Meteor.methods({
-    'image.insert'(info) {
-        // check(text, String);
-        const images = Config.findOne({name: "image"}).query.info;
-        // console.log(images);
-        images.push(info);
-        Config.update({ name: 'image' }, { $set: { info: images } });
-    },
+
     // 'tasks.remove'(taskId) {
     //     check(taskId, String);
     //

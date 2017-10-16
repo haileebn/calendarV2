@@ -6,7 +6,8 @@ import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/configImage/configImage.js';
 import '../../ui/pages/configQuota/configQuota.js';
-// import '../../ui/pages/configImage/configImage.js';
+import '../../ui/pages/configTime/configTime.js';
+import '../../ui/pages/configBackground/configBackground.js';
 import '../../ui/pages/not-found/not-found.js';
 
 // Set up all routes in the app

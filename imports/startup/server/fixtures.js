@@ -10,7 +10,6 @@ Meteor.startup(() => {
   const cfImage = Config.find({ name: 'image'}).count();
   const cfQuotation = Config.find({ name: 'quotation'}).count();
   const cfTime = Config.find({ name: 'time'}).count();
-
   if (Links.find().count() === 0) {
     const data = [
       {

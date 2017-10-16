@@ -1,76 +1,79 @@
 <template name="App_config_quota">
-    <div class="container-fluid">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/configTime">FIMO Calendar Admin</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="/"><a href="/">Home</a></li>
-                    <li><a href="/configTime">Config Time</a></li>
-                    <li class="active"><a href="/configQuota">Config quotation</a></li>
-                    <li><a href="/configImage">Config Image</a></li>
-                    <li><a href="/configBackground">Config Background</a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="row">
-            <div class="col-lg-12 content">
-                <div class="row">
-                    <!--<div class="col-lg-12" id="titleContent"></div>-->
-                    <!--<div class="alert alert-success alert-dismissible">-->
-                        <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
-                        <!--<strong>Success!</strong> This alert box could indicate a successful or positive action.-->
-                    <!--</div>-->
-                    <hr class="class14"/>
-                </div>
-                <form class="new-quota">
-                    <div class="form-group row">
-                        <div class="col-lg-4 col-lg-offset-4" style="background-color: #eae1e1; color: black;">
-                            <label>Title</label>
-                            <input class="form-control" id="tTitle" type="text" placeholder="...">
-                            <label>Author</label>
-                            <input class="form-control" id="tAuthor" type="text" placeholder="...">
-                            <label>Time Show (Minutes)</label>
-                            <input class="form-control" id="tTimeShow" type="text" placeholder="...please enter number 0 -> 60.. 0.5 = 30s">
-                            <button type="button" class="btn btn-primary" id="add"> Add </button>
-                        </div>
-                        <div id="alert" class="alert col-lg-offset-1 col-lg-2" style="display: none;">
-                            <p></p>
-                        </div>
+    {{#if config}}
+        <div class="container-fluid" style="background-color: {{ config.backgroundColor }}; color: {{ config.color }}">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/configTime">FIMO Calendar Admin</a>
                     </div>
-                </form>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <table id="mainContent" class="table-hover">
-                            <thead>
-                            <tr>
-                                <th class="col-lg-1 col-stt">STT</th>
-                                <th class="col-lg-1 col-link">Link</th>
-                                <th class="col-lg-6 col-content">Content</th>
-                                <th class="col-lg-1 col-del">Action</th>
-                                <!-- <th class="col-lg-1" id="col-">Địa Điểm</th> -->
-                            </tr>
-                            </thead>
-                            <tbody id="contentTable">
-                                {{#if init}}
-                                    {{#each init}}
-                                        <tr>
-                                            <td class="col-lg-1 col-stt">{{ index }}</td>
-                                            <td class="col-lg-1 col-link"><a href="{{ url }}">image{{ index }}</a></td>
-                                            <td class="col-lg-6 col-content">{{ title }}</td>
-                                            <td class=" col-del">
-                                                <!--<a><span class="glyphicon glyphicon-remove" id="{{ index }}"></span></a>-->
-                                                <button class="delete">&times;</button>
-                                            </td>
-                                        </tr>
-                                    {{/each}}
-                                {{/if}}
-                            </tbody>
-                        </table>
+                    <ul class="nav navbar-nav">
+                        <li class="/"><a href="/">Home</a></li>
+                        <li><a href="/configTime">Config Time</a></li>
+                        <li class="active"><a href="/configQuota">Config quotation</a></li>
+                        <li><a href="/configImage">Config Image</a></li>
+                        <li><a href="/configBackground">Config Background</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-lg-12 content">
+                    <div class="row">
+                        <!--<div class="col-lg-12" id="titleContent"></div>-->
+                        <!--<div class="alert alert-success alert-dismissible">-->
+                            <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                            <!--<strong>Success!</strong> This alert box could indicate a successful or positive action.-->
+                        <!--</div>-->
+                        <hr class="class14"/>
+                    </div>
+                    <form class="new-quota">
+                        <div class="form-group row">
+                            <div class="col-lg-4 col-lg-offset-4" style="background-color: #eae1e1; color: black;">
+                                <label>Title</label>
+                                <input class="form-control" id="titleQt" type="text" placeholder="...">
+                                <label>Author</label>
+                                <input class="form-control" id="authorQt" type="text" placeholder="...">
+                                <label>Time Show (Minutes)</label>
+                                <input class="form-control" id="timeShowQt" type="text" placeholder="...please enter number 0 -> 60.. 0.5 = 30s">
+                                <button type="button" class="btn btn-primary" id="add"> Add </button>
+                            </div>
+                            <div id="alert" class="alert col-lg-offset-1 col-lg-2" style="display: none;">
+                                <p></p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="mainContent" class="table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="col-lg-1 col-stt">STT</th>
+                                        <th class="col-lg-8 col-title">Title</th>
+                                        <th class="col-lg-1 col-author">Author</th>
+                                        <th class="col-lg-1 col-time">Time</th>
+                                        <th class="col-lg-1 col-del">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contentTable">
+                                    {{#if init}}
+                                        {{#each init}}
+                                            <tr>
+                                                <td class="col-lg-1 col-stt">{{ index }}</td>
+                                                <td class="col-lg-8 col-title">{{ title }}</td>
+                                                <td class="col-lg-1 col-author">{{ author }}</td>
+                                                <td class="col-lg-1 col-time">{{ timeShow }}</td>
+                                                <td class="col-lg-1 col-del">
+                                                    <!--<a><span class="glyphicon glyphicon-remove" id="{{ index }}"></span></a>-->
+                                                    <button class="delete">&times;</button>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+                                    {{/if}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/if}}
 </template>

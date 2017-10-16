@@ -1,7 +1,9 @@
 import { Links } from '/imports/api/links/links.js';
 import { TOKEN, MultiData, Config } from '/imports/api/links/collections.js';
 import { Meteor } from 'meteor/meteor';
+// import { Session } from 'meteor/session';
 import './info.html';
+
 
 let configTime;
 let quota;
@@ -32,7 +34,12 @@ Template.info.onCreated(() => {
 });
 Template.info.helpers({
     init() {
-
+        // if (Session.get('refresh')) {
+        //     console.log(Session.get('refresh'));
+            // window.location.href = `${window.location.origin}`;
+        // }else {
+        //     console.log("khong co session");
+        // }
         const TIME_CONST = 4; // 4second
         let dataDb = MultiData.find().fetch();
         let configTimeDb = Config.find({ name: 'time' }).fetch();
@@ -40,6 +47,14 @@ Template.info.helpers({
         let imagesDb = Config.find({ name: 'image' }).fetch();
         let styleDb = Config.find({ name: 'background' }).fetch();
 
+        Config.find({}).observeChanges({
+            changed(id, fields){
+                notificationTimeout("notification", 5000);
+                setTimeout(() => {
+                    window.location.href = window.location.origin;
+                }, 5000);
+            }
+        });
 
 
         if (configTimeDb.length !== 0 &&
@@ -56,7 +71,7 @@ Template.info.helpers({
 
             let minute = configTime.time[0].timeShowData;
             let timeNextSlide = configTime.time[0].timeNextSlide; // second
-            totalTime = totalTime1(images, configTime, quota) - TIME_CONST; // seconds;
+            totalTime = totalTime1(images, configTime, quota); // seconds;
             // console.log(totalTime);
             if (style.fimoIcon) document.getElementById('fimoLogo').src = style.fimoIcon;
             if (style.backgroundImage) {
@@ -76,7 +91,6 @@ Template.info.helpers({
                     // console.log(item.timeShow);
                 }
             });
-
             timeShowData = minute*60*second;
             timeNextImage = timeNextSlide*second;
 
@@ -100,13 +114,14 @@ Template.info.helpers({
             });
             // console.log(window.location);
             function refresh() {
-                if(new Date().getTime() - timeCurrent >= totalTime*second - 5*second){
+                // console.log(window.location.origin, window.location.href);
+                if(new Date().getTime() - timeCurrent >= totalTime*second){
                     window.location.href = `${window.location.origin}`;
-                    // console.log("refresh");
                 }
                 else
                     setTimeout(refresh, 5*second);
             }
+
             setTimeout(refresh, 5*second);
         }
     },

@@ -70,6 +70,47 @@ Meteor.methods({
     query.info.splice(index, 1);
     Config.update({ name: 'image' }, { $set: { query } });
   },
+  'quota.insert'(quotation) {
+    // check(text, String);
+    let query = Config.findOne({name: "quotation"}).query;
+    query.quotation.push(quotation);
+    Config.update({ name: "quotation" }, { $set: { query } });
+  },
+  'quota.delete'(index) {
+    // check(text, String);
+    let query = Config.findOne({name: "quotation"}).query;
+    query.quotation.splice(index, 1);
+    Config.update({ name: "quotation" }, { $set: { query } });
+  },
+  'time.update'(data) {
+    // check(text, String);
+
+    const time = [{
+            timeShowData: data.timeData,
+            timeNextSlide: data.timeSlide
+        }];
+    const changeColor = {
+        backgroundColor: data.backgroundColor,
+        color: data.color,
+        highLight: data.highLight
+    };
+
+    let query = Config.findOne({name: "time"}).query;
+    query.time = time;
+    query.changeColor = changeColor;
+    Config.update({ name: "time" }, { $set: { query } });
+  },
+  'background.update'(data) {
+    // check(text, String);
+    Config.update({ name: "background" }, { $set: { query: data } });
+  },
+  'background.delete'() {
+    // check(text, String);
+    // console.log(data);
+    let query = Config.findOne({name: "background"}).query;
+    query.backgroundImage = "";
+    Config.update({ name: "background" }, { $set: { query } });
+  },
 });
 
 function getWeather(body) {

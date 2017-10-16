@@ -1,0 +1,89 @@
+<template name="App_config_background">
+    <div class="container-fluid" style="background-color: {{ config.backgroundColor }}; color: {{ config.color }}">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/configTime">FIMO Calendar Admin</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="/"><a href="/">Home</a></li>
+                    <li><a href="/configTime">Config Time</a></li>
+                    <li><a href="/configQuota">Config quotation</a></li>
+                    <li><a href="/configImage">Config Image</a></li>
+                    <li class="active"><a href="/configBackground">Config Background</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-lg-12 content">
+                <div class="row">
+                    <!--<div class="col-lg-12" id="titleContent"></div>-->
+                    <!--<div class="alert alert-success alert-dismissible">-->
+                        <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                        <!--<strong>Success!</strong> This alert box could indicate a successful or positive action.-->
+                    <!--</div>-->
+                    <hr class="class14"/>
+                </div>
+                <form class="new-quota">
+                    <div class="form-group row">
+                        <div class="col-lg-4 col-lg-offset-4" style="background-color: #eae1e1; color: black;">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label for="tBgImage">Background Image</label>
+                                    <input class="form-control" id="tBgImage" type="text" value="{{ init.backgroundImage }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label for="tFimoIcon">FIMO Icon</label>
+                                    <input class="form-control" id="tFimoIcon" type="text" value="{{ init.fimoIcon }}">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="update"> Update </button>
+                        </div>
+                        <div id="alert" class="alert col-lg-offset-1 col-lg-2" style="display: none;">
+                            <p></p>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="mainContent" class="table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-lg-1 col-stt">STT</th>
+                                    <th class="col-lg-1 col-link">Link</th>
+                                    <th class="col-lg-6 col-content">Content</th>
+                                    <th class="col-lg-1 col-del">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentTable">
+                                <tr>
+                                    <td class="col-lg-1 col-stt">1</td>
+                                    <td class="col-lg-1 col-link"><a href="{{ init.fimoIcon }}">Open</a></td>
+                                    <td class="col-lg-6 col-content">FIMO ICON</td>
+                                    <td class="col-lg-1 col-del">
+                                        <!--<a><span class="glyphicon glyphicon-remove" id="{{ index }}"></span></a>-->
+                                        <button class="notDelete"  style="cursor: not-allowed">&times;</button>
+                                    </td>
+                                </tr>
+                                {{#if init.backgroundImage}}
+                                    <tr>
+                                        <td class="col-lg-1 col-stt">2</td>
+                                        <td class="col-lg-1 col-link"><a href="{{ init.backgroundImage }}">Open</a></td>
+                                        <td class="col-lg-6 col-content">Hình nền bảng tin FIMO</td>
+                                        <td class="col-lg-1 col-del">
+                                            <!--<a><span class="glyphicon glyphicon-remove" id="{{ index }}"></span></a>-->
+                                            <button class="delete">&times;</button>
+                                        </td>
+                                    </tr>
+                                {{/if}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

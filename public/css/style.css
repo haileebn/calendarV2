@@ -199,7 +199,7 @@ hr{
 }
 
 .quotation{
-    top: 40%;
+    top:35%;
     width: 100%;
     position: relative;
     padding: 0 10%;
@@ -331,4 +331,30 @@ em{
 
 a#notDel{
     cursor: not-allowed;
+}
+#picker { width: 200px; height: 200px }
+#slide { width: 30px; height: 200px }
+#picker-wrapper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+#slider-wrapper {
+    width: 30px;
+    height: 200px;
+    position: relative;
+}
+#picker-indicator {
+    width: 3px;
+    height: 3px;
+    position: absolute;
+    border: 1px solid white;
+}
+#notification{
+    z-index: 999;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    display: none;
+    right: 0;
 }

@@ -1,9 +1,7 @@
 import { Config } from '/imports/api/links/collections.js';
 import { Meteor } from 'meteor/meteor';
-
+// import { Session } from 'meteor/session';
 import './configImage.html';
-
-let configTime;
 
 Template.App_config_image.onCreated(() => {
     Meteor.subscribe('config.all');
@@ -11,20 +9,19 @@ Template.App_config_image.onCreated(() => {
 Template.App_config_image.helpers({
     init() {
         let imagesDb = Config.find({ name: 'image' }).fetch();
-        let configTimeDb = Config.find({ name: 'time' }).fetch();
-
-        if (configTimeDb.length !== 0 &&
-            imagesDb.length !== 0){
-            images = imagesDb[0].query;
-            configTime = configTimeDb[0].query;
+        // console.log(Session.get('refresh'));
+        if (imagesDb.length !== 0){
             imagesDb[0].query.info.forEach((item, index) => {
                 if(item && !item.index)
                     item.index = index + 1;
             });
-            configColor(configTime.changeColor);
             return imagesDb[0].query.info;
         }
     },
+    config(){
+        if (Config.findOne({ name: 'time' }))
+            return Config.findOne({ name: 'time' }).query.changeColor;
+    }
 });
 
 Template.App_config_image.events({
@@ -41,6 +38,7 @@ Template.App_config_image.events({
             alert.children[0].innerHTML = "Bạn chưa nhập <strong>Nội dung</strong> của ảnh!";
             alertTimeout("alert", "alert-danger", "alert-success", 2000);
         } else {
+            // Session.set('refresh', "abc");
             Meteor.call('image.insert', { url: url.value , title: content.value });
             alert.children[0].innerHTML = "<strong>Thêm ảnh</strong> thành công!";
             url.value = "";

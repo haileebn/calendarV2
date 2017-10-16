@@ -3,56 +3,60 @@ import { Meteor } from 'meteor/meteor';
 
 import './configQuota.html';
 
-let configTime;
-
 Template.App_config_quota.onCreated(() => {
     Meteor.subscribe('config.all');
 });
 Template.App_config_quota.helpers({
     init() {
-        let imagesDb = Config.find({ name: 'image' }).fetch();
-        let configTimeDb = Config.find({ name: 'time' }).fetch();
+        let quotasDb = Config.find({ name: 'quotation' }).fetch();
+        if (quotasDb.length !== 0){
+            quotas = quotasDb[0].query;
+            quotasDb[0].query.quotation.forEach((item, index) => {
 
-        if (configTimeDb.length !== 0 &&
-            imagesDb.length !== 0){
-            images = imagesDb[0].query;
-            configTime = configTimeDb[0].query;
-            imagesDb[0].query.info.forEach((item, index) => {
-                if(item && !item.index)
+                if(item && !item.index) {
                     item.index = index + 1;
+                }
             });
-            configColor(configTime.changeColor);
-            return imagesDb[0].query.info;
+            return quotasDb[0].query.quotation;
         }
     },
+    config(){
+        if (Config.findOne({ name: 'time' }))
+            return Config.findOne({ name: 'time' }).query.changeColor;
+    }
 });
 
 Template.App_config_quota.events({
     'click #add'(event) {
         // Prevent default browser form submit
         event.preventDefault();
-        let url = document.getElementById("urlImg");
-        let content = document.getElementById("contentImg");
+        let title = document.getElementById("titleQt");
+        let author = document.getElementById("authorQt");
+        let timeShow = document.getElementById("timeShowQt");
         const alert = document.getElementById("alert");
-        if ( url.value === "") {
-            alert.children[0].innerHTML = "Bạn chưa nhập <strong>đường dẫn</strong> của ảnh!";
+        if ( title.value === "") {
+            alert.children[0].innerHTML = "Bạn chưa nhập <strong>Tiêu đề</strong> của câu nói!";
             alertTimeout("alert", "alert-danger", "alert-success", 2000);
-        }else if (content.value === "") {
-            alert.children[0].innerHTML = "Bạn chưa nhập <strong>Nội dung</strong> của ảnh!";
+        }else if (author.value === "") {
+            alert.children[0].innerHTML = "Bạn chưa nhập <strong>Tên tác giả</strong> của câu nói!";
+            alertTimeout("alert", "alert-danger", "alert-success", 2000);
+        }else if (timeShow.value === "") {
+            alert.children[0].innerHTML = "Bạn chưa nhập <strong>Thời gian chạy</strong> của câu nói!";
             alertTimeout("alert", "alert-danger", "alert-success", 2000);
         } else {
-            Meteor.call('image.insert', { url: url.value , title: content.value });
-            alert.children[0].innerHTML = "<strong>Thêm ảnh</strong> thành công!";
-            url.value = "";
-            content.value = "";
+            Meteor.call('quota.insert', { title: title.value , author: author.value, timeShow: timeShow.value });
+            alert.children[0].innerHTML = "<strong>Thêm câu nói</strong> thành công!";
+            title.value = "";
+            author.value = "";
+            timeShow.value = "";
             alertTimeout("alert", "alert-success", "alert-danger", 2000);
         }
     },
     'click .delete'(event) {
         event.preventDefault();
-        Meteor.call('image.delete', this.index - 1);
+        Meteor.call('quota.delete', this.index - 1);
         const alert = document.getElementById("alert");
-        alert.children[0].innerHTML = "<strong>Xóa ảnh</strong> thành công!";
+        alert.children[0].innerHTML = "<strong>Xóa câu nói</strong> thành công!";
         alertTimeout("alert", "alert-success", "alert-danger", 2000);
     },
 });

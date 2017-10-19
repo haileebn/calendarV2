@@ -4,28 +4,60 @@
         <img src="/img/new_icon.gif" class="img-responsive">
         <span id="countTimeout"></span>
     </div>
-    <div class="quotation"></div>
-    <div class="slideshow-container"></div>
-    <div class="container-fluid">
+    {{#let quotas=config.quotas images=config.images}}
+        <div class="quotation">
+            {{#each quotas}}
+                <div class="contentQuota">
+                    <p>{{title}}<br>
+                        <em>{{author}}</em>
+                    </p>
+                </div>
+            {{/each}}
+        </div>
+        <div class="slideshow-container">
+            {{#each images}}
+                <div class="mySlides" id="mySlide" style="background-image: url({{url}})">
+                    <div id="contentImage">
+                        <p>{{title}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/let}}
+    <div class="container-fluid" style="
+        <!--{{#if config}}-->
+        {{#let backgroundImage=config.style.backgroundImage backgroundColor=config.backgroundColor}}
+        {{#if backgroundImage}}
+            background-image: url('{{ backgroundImage }}');
+        {{else}}
+            background-color: {{ backgroundColor }};
+        {{/if}}
+        {{/let}}
+        <!--{{/if}}-->
+        ">
         <div class="row row-eq-height" id="header">
             <div class="col-sm-7 col-lg-7 headerLeft">
-                <a href="/cft"><img class="col-sm-3 col-lg-3" id="fimoLogo" alt="logo fimo" /></a>
+                <a href="/cft"><img class="col-sm-3 col-lg-3" id="fimoLogo" alt="logo fimo" src=" {{ config.style.fimoIcon }}"/></a>
                 <h4 class="col-sm-9 col-lg-9">Center of Multidisciplinary Integrated Technologies for Field Monitoring University of Engineering and Technology, Vietnam National University</h4>
             </div>
             <div class="col-sm-3 col-lg-3 headerRight">
                 <div class="row">
-                    <div class="col-sm-3 col-lg-3" id="iconWeather"></div>
+                <!--{{#if config}}-->
+                {{#let weather=config.weather}}
+                    <div class="col-sm-3 col-lg-3" id="iconWeather"><img src="http:{{weather.imgLink}}"></div>
                     <div class="col-sm-9 col-lg-9">
                         <div class="row">
-                            <div class="col-sm-12 col-lg-12" id="temp"></div>
+                            <div class="col-sm-12 col-lg-12" id="temp">Hà Nội {{weather.temp}}°C</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-lg-12" id="hum"></div>
+                            <div class="col-sm-12 col-lg-12" id="hum">Độ ẩm {{weather.hum}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-lg-12" id="wind"></div>
+                            <div class="col-sm-12 col-lg-12" id="wind">Tốc độ gió {{weather.wind}}</div>
                         </div>
                     </div>
+                {{/let}}
+                <!--{{/if}}-->
                 </div>
             </div>
             <div class="col-sm-2 col-lg-2" id="clock">
@@ -45,7 +77,9 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12 content">
                 <div class="row">
-                    <div class="col-sm-12 col-lg-12" id="titleContent"></div>
+                    <div class="col-sm-12 col-lg-12" id="titleContent">
+                        <span class="glyphicon glyphicon-calendar"></span> LỊCH CÔNG TÁC: (Tuần {{ config.time }})
+                    </div>
                     <hr class="class14"/>
                 </div>
                 <div class="row">

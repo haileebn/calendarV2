@@ -23,10 +23,10 @@ let quotaIndex = 0;
 let timeSlide= null;
 let timeQuota= null;
 let timeData = null;
-
 let flag = 0;
 
 Template.info.onCreated(() => {
+    // window.location.href = window.location.origin;
     Meteor.subscribe('links.all');
     Meteor.subscribe('config.all');
     Meteor.subscribe('multiData.all');
@@ -73,20 +73,20 @@ Template.info.helpers({
             let timeNextSlide = configTime.time[0].timeNextSlide; // second
             totalTime = totalTime1(images, configTime, quota); // seconds;
             // console.log(totalTime);
-            if (style.fimoIcon) document.getElementById('fimoLogo').src = style.fimoIcon;
-            if (style.backgroundImage) {
-                configColor(configTime.changeColor, style.backgroundImage);
-            }
-            else {
-                configColor(configTime.changeColor);
-            }
-            images.info.forEach((item, index) => {
-                if(item)
-                    createImage(item);
-            });
+            // if (style.fimoIcon) document.getElementById('fimoLogo').src = style.fimoIcon;
+            // if (style.backgroundImage) {
+            //     configColor(configTime.changeColor, style.backgroundImage);
+            // }
+            // else {
+            //     configColor(configTime.changeColor);
+            // }
+            // images.info.forEach((item, index) => {
+            //     if(item)
+            //         createImage(item);
+            // });
             quota.quotation.forEach((item, index) => {
                 if(item){
-                    createQuota(item);
+                    // createQuota(item);
                     timeShowQuota[index] = item.timeShow; // minute
                     // console.log(item.timeShow);
                 }
@@ -96,7 +96,6 @@ Template.info.helpers({
 
             showData();
 
-
             data.data.sort((a,b) => {
                 let aStart = new Date(a.start).getTime();
                 let bStart = new Date(b.start).getTime();
@@ -104,6 +103,7 @@ Template.info.helpers({
                 let bEnd = new Date(b.end).getTime();
                 return aStart - bStart || aEnd - bEnd;
             });
+
             loadDoc(data);
 
             // console.log(configTime.changeColor);
@@ -125,18 +125,36 @@ Template.info.helpers({
             setTimeout(refresh, 5*second);
         }
     },
+    config() {
+        let dataDb = MultiData.findOne();
+        let background = Config.findOne({ name: 'background' });
+        let style = Config.findOne({ name: 'time' });
+        let images = Config.findOne({ name: 'image' });
+        let quotas = Config.findOne({ name: 'quotation' });
+        if (dataDb && background && style && images && quotas){
+            let monday = new Date();
+            monday = new Date(monday.setDate(monday.getDate() - monday.getDay() + 1));
+            let saturday = new Date();
+            saturday = new Date(saturday.setDate(saturday.getDate() - saturday.getDay() + 7));
+            const weekWork = `${monday.getDate()}/${(monday.getMonth()+1)}~${saturday.getDate()}/${(saturday.getMonth()+1)}/${saturday.getFullYear()}`;
+            return {
+                weather: dataDb.info,
+                style: {
+                    backgroundImage: background.query.backgroundImage,
+                    fimoIcon: background.query.fimoIcon
+                },
+                backgroundColor: style.query.changeColor.backgroundColor,
+                time: weekWork,
+                images: images.query.info,
+                quotas: quotas.query.quotation,
+            };
+        }
+    },
 });
 
 Template.info.onRendered(() => {
     document.title = "Home";
     initLocalClocks();
-    let monday = new Date();
-    monday = new Date(monday.setDate(monday.getDate() - monday.getDay() + 1));
-    let saturday = new Date();
-    saturday = new Date(saturday.setDate(saturday.getDate() - saturday.getDay() + 7));
-    let html = '<span class="glyphicon glyphicon-calendar"></span> LỊCH CÔNG TÁC: (Tuần ' + monday.getDate() + '/' + (monday.getMonth()+1) + '~'+ saturday.getDate() + '/' + (saturday.getMonth()+1) + '/' + saturday.getFullYear() + ')';
-    document.getElementById('titleContent').innerHTML = html;
-
 });
 
 function formatDateToHour(d){
@@ -234,10 +252,10 @@ function clearShowMoreDataInterval(){
 }
 
 function loadDoc(data, showMoreDataInterval) {
-    setVal(document.getElementById("temp"), `Hà Nội ${data.info.temp}°C`);
-    setVal(document.getElementById("hum"), `Độ ẩm ${data.info.hum}`);
-    setVal(document.getElementById("wind"), `Tốc độ gió ${data.info.wind}`);
-    appendHtml(document.getElementById("iconWeather"), `<img src="http:${data.info.imgLink}">`);
+    // setVal(document.getElementById("temp"), `Hà Nội ${data.info.temp}°C`);
+    // setVal(document.getElementById("hum"), `Độ ẩm ${data.info.hum}`);
+    // setVal(document.getElementById("wind"), `Tốc độ gió ${data.info.wind}`);
+    // appendHtml(document.getElementById("iconWeather"), `<img src="http:${data.info.imgLink}">`);
 //		data.data.forEach((item, index) => {
 //			if(item)
 //				createRow(item);

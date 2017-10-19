@@ -11,7 +11,7 @@ import '../../ui/pages/configBackground/configBackground.js';
 import '../../ui/pages/not-found/not-found.js';
 
 // Set up all routes in the app
-FlowRouter.route(['/', '/home'], {
+FlowRouter.route(['/', '/home_old'], {
   name: 'App.home',
   action() {
       BlazeLayout.setRoot('body');
